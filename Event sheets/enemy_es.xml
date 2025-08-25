@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>enemy_es</name>
+    <events>
+        <event-block sid="593960555976935">
+            <conditions>
+                <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="386950127105640" type="spr__enemy">
+                    <param id="0" name="Object">spr__player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="339328433453466" type="spr__enemy">
+                    <param id="0" name="Instance variable">is_moving</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="976803063514561">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="645505059059192" type="spr__enemy">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">spr__player.X</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="789224013494136" type="spr__enemy">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="924163286099666" type="spr__enemy">
+                            <param id="0" name="Instance variable">direction</param>
+                            <param id="1" name="Value">&quot;right&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="217468299507125">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="361697255408085" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="256292869997431" type="spr__enemy">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="681663665166619" type="spr__enemy">
+                            <param id="0" name="Instance variable">direction</param>
+                            <param id="1" name="Value">&quot;left&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="349565165302628">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="201474743816206" type="spr__enemy">
+                            <param id="0" name="Instance variable">can_shoot</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="407363610388121" type="Audio">
+                            <param id="0" name="Audio file">shooting</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="920883859298400" type="spr__enemy">
+                            <param id="0" name="Instance variable">can_shoot</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="705774120992089" type="spr__enemy">
+                            <param id="0" name="Object">spr__bullet</param>
+                            <param id="1" name="Layer">&quot;Objects&quot;</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                        <action id="-22" name="Set angle toward position" sid="235020835818863" type="spr__bullet">
+                            <param id="0" name="X">spr__player.ImagePointX(1)</param>
+                            <param id="1" name="Y">spr__player.ImagePointY(1)</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="138152304188726" type="System">
+                            <param id="0" name="Seconds">0.5</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="722596639899452" type="spr__enemy">
+                            <param id="0" name="Instance variable">can_shoot</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="474890420890963">
+            <conditions>
+                <condition behavior="LineOfSight" id="0" inverted="1" name="Has LOS to object" sid="997143258058039" type="spr__enemy">
+                    <param id="0" name="Object">spr__player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="600641570838215" type="spr__enemy">
+                    <param id="0" name="Instance variable">is_moving</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="511149627503307">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="387604886048507" type="spr__enemy">
+                    <param id="0" name="Object">spr__border_left</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="349282026514046" type="spr__enemy">
+                    <param id="0" name="Instance variable">direction</param>
+                    <param id="1" name="Value">&quot;right&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="798007536866890">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="644634611132175" type="spr__enemy">
+                    <param id="0" name="Object">spr__border_right</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="248448204467277" type="spr__enemy">
+                    <param id="0" name="Instance variable">direction</param>
+                    <param id="1" name="Value">&quot;left&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="677827925931078">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="200120694960378" type="spr__enemy">
+                    <param id="0" name="Instance variable">direction</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;left&quot;</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="607040554737079" type="spr__enemy">
+                    <param id="0" name="Instance variable">is_moving</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="825696389206857" type="spr__enemy">
+                    <param id="0" name="Control">0</param>
+                </action>
+                <action id="7" name="Set mirrored" sid="264437735295698" type="spr__enemy">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="661121259728396">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="329653341371019" type="spr__enemy">
+                    <param id="0" name="Instance variable">direction</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;right&quot;</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="644109648816018" type="spr__enemy">
+                    <param id="0" name="Instance variable">is_moving</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="446885181190657" type="spr__enemy">
+                    <param id="0" name="Control">1</param>
+                </action>
+                <action id="7" name="Set mirrored" sid="378421032798034" type="spr__enemy">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="950966348974819" title="Bullet">
+            <sub-events>
+                <event-block sid="924187501007909">
+                    <conditions>
+                        <condition id="-4" name="Is outside layout" sid="570802330550961" type="spr__bullet" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="831122101399067" type="spr__bullet" />
+                    </actions>
+                </event-block>
+                <event-block sid="998292871001880">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="400923986881805" type="spr__bullet">
+                            <param id="0" name="Object">tb__ground</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="764234653156583" type="spr__bullet" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="509817096877650">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="760465203708022" type="spr__enemy">
+                    <param id="0" name="Object">spr__blast</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="414919733425719" type="spr__enemy" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
